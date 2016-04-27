@@ -1,0 +1,13 @@
+function [ Xdata_events_train,Ydata_events_train,...
+          Xdata_events_test,Ydata_events_test,...
+          events_flag_train,events_flag_test ] = load_data()
+%	加载训练数据和测试数据
+%   返回
+    FileNameEvents = 'data_with_low_events.txt';
+    FileNameNormal = 'data_without_events.txt';
+    [Xdata_events_train,Ydata_events_train,...
+     Xdata_events_test,Ydata_events_test,...
+     events_flag_train,events_flag_test] = create_dataset(FileNameNormal,FileNameEvents);
+
+end
+
