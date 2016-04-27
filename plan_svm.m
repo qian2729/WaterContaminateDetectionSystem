@@ -16,8 +16,8 @@ fprintf('step 2 计算训练数据集残差\n');
 % step 3: 划分训练集和测试集
 % -----------------------------------------------------------------------------
 fprintf('step 3 划分训练集和测试集\n');
-split_count = 10;
-split_index = 7;
+split_count = 4;
+split_index = 1;
 [train_data, train_label, validate_data, validate_label ] = ...
                 split_train( train_data, train_label, split_count, split_index );
 
@@ -43,5 +43,5 @@ model = @svmclassify;
 % -----------------------------------------------------------------------------
 fprintf('step 6 性能评定\n');
 % evaluation(test_label,test_prediction); ％ 画预测结果图
-% draw_roc(model, factor, test_data,test_label,TPR, FPR); % 画ROC图
+draw_roc(model, factor, test_data,test_label,TPR, FPR); % 画ROC图
 

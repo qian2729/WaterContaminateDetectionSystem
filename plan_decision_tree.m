@@ -32,7 +32,7 @@ fprintf('step 4 计算测试数据集残差\n');
 % step 5: 用SVM模型做预测
 % -----------------------------------------------------------------------------
 fprintf('step 5 用决策树模型识别每个时刻是否为异常点\n');
-threshold = 0.95;
+threshold = 0.9;
 model = @predict;
 [test_prediction] = make_predict( model, factor, test_data, TPR, FPR, threshold);
 
