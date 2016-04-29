@@ -1,12 +1,12 @@
-function [ event_prediction ] = bayes(predict_label,TPR,FPR, threshold,alpha)
+function [ event_prediction ] = bayes(predict_label,TPR,FPR, threshold)
 %   应用贝叶斯规则对每一时刻事件发生的概率进行估计
-%   并应用平滑方法来去除噪声事件
+%   并应用平滑方法来去除噪声事件 ,alpha
 
     pe0 = 1e-5;                     %设置初始事件的概率
     if nargin < 4
         threshold = 0.9; % 设置默认阈值
-        alpha = 0.3;    % 设置默认平滑细数 0.3<＝alpha<＝0.9
-    end  
+    end 
+    alpha = 0.1;    % 设置默认平滑细数 0.1<＝alpha<＝0.9 通过修改平滑系数可以调整去掉噪音异常的程度
                      
     pe = pe0;
     P_event = zeros(1,length(predict_label));
@@ -15,7 +15,7 @@ function [ event_prediction ] = bayes(predict_label,TPR,FPR, threshold,alpha)
             pe1=pe;
             pe=TPR*pe/(TPR*pe+FPR*(1-pe));   % 应用异常指标的更新规则
             pe=alpha*pe+(1-alpha)*pe1;       % 平滑处理
-            pe=min(pe,0.95);                 % 
+            pe=min(pe,0.9999);                 % 
         else
             pe1=pe;
             pe=(1-TPR)*pe/((1-TPR)*pe+(1-FPR)*(1-pe));   %没有异常的更新规则

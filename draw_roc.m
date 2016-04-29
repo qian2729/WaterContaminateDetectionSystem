@@ -1,6 +1,6 @@
 function [] = draw_roc(model, factor, test_data,test_label,TPR, FPR)
 %   »æÖÆROCÇúÏß
-    thresholds = 0.1:0.05:1;
+    thresholds = 0.01:0.02:1;
     tpr = zeros(length(thresholds));
     fpr = zeros(length(thresholds));
     index = 1;
