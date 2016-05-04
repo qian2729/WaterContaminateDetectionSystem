@@ -18,7 +18,7 @@ function [Xdata_events_train,Ydata_events_train,...
         ll=size(normal_data,1)-(kFold-1)*l;% test data length
     end
     AAA=[normal_data,events_data]; % [normal_data events_data]
-    for i=2%kFold%:-1:1 
+    for i=2
         temp=AAA([(i-1)*l+1:(i-1)*l+ll],:); % 将前三分之一和后三分之一数据放在一起，中间三分之一数据放在最后
         AAA([(i-1)*l+1:(i-1)*l+ll],:)=[];
         AAA=[AAA;temp];                             %Place the test set at the end of the data set

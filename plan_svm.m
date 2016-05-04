@@ -3,10 +3,14 @@ close all;
 clear;
 % step 1: 加载训练和测试数据
 % -----------------------------------------------------------------------------
+FileNameEvents = 'data_with_low_events.txt';
+FileNameNormal = 'data_without_events.txt';
+% FileNameEvents = 'new_data.csv';
+% FileNameNormal = 'new_data_with_event.csv';
 fprintf('step 1 加载训练和测试数据\n');
 [ Xdata_events_train,Ydata_events_train,...
       Xdata_events_test,Ydata_events_test,...
-      train_label,test_label ] = load_data();
+      train_label,test_label ] = load_data(FileNameEvents,FileNameNormal);
 
 % step 2: 利用神经网络模型做预测，计算训练数据集预测与实际测量的误差
 % -----------------------------------------------------------------------------
