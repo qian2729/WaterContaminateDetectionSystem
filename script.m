@@ -1,6 +1,8 @@
+
+% paper 中的数据
 % raw_data = load('data_without_events.txt');
 % event_data = load('data_with_low_events.txt');
-
+% 我们的数据
 raw_data = load('new_data.csv');
 event_data = load('new_data_with_event.csv');
 figure
