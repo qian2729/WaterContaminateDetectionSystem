@@ -6,14 +6,15 @@ function [ event_data ] = add_event_to_data( data)
     count = 100; % 决定了高斯分布事件的持续时间
     event_data = data;
     sigmas = ones(m,1);
-    sigmas(:) = 0.5;
-    for i = 3:m - 1
+    sigmas(4) = 0.5;
+    sigmas(5) = 2;
+    for i = 3:m-1
         sig = std(filter_vector(data(:,i)));
         simulate_data = get_fixed_event(n,step,count,sigmas(i) * sig);
         simulate_pos = simulate_data > 0;
         event_data(:,i) = data(:,i) +  simulate_data;
         event_data(simulate_pos,2) = 1;
     end
-    event_data(:,m) = data(:,m) + get_low_high_event(n,step,count,2 * sig, 0.5 * sig);
+    event_data(:,m-1) = data(:,m-1) + get_low_high_event(n,step,count,4 * sig, 2 * sig);
 end
 
