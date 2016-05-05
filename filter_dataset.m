@@ -3,7 +3,7 @@ function [ new_dataset ] = filter_dataset( dataset )
 %   
     [~,col] = size(dataset);
     new_dataset = dataset;
-    for i = 1:col
+    for i = 3:col
         vector = new_dataset(:,i);
         m = mean(vector);
         sig = std(vector);

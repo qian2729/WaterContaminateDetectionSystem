@@ -13,6 +13,8 @@ fprintf('step 1 加载训练和测试数据\n');
     Xdata_normal_test,Ydata_normal_test] = load_data(FileNameEvents,FileNameNormal);
 
 for sensor_type = 1:6
+%     train_data_x = [Xdata_normal_train{sensor_type}' Xdata_normal_test{sensor_type}'];
+%     train_data_y = [Ydata_normal_train{sensor_type}' Ydata_normal_test{sensor_type}'];
     train_data_x = Xdata_normal_train{sensor_type}';
     train_data_y = Ydata_normal_train{sensor_type}';
     [net] = train_ann( train_data_x, train_data_y );

@@ -15,8 +15,8 @@ fprintf('step 1 加载训练和测试数据\n');
 % step 2: 利用神经网络模型做预测，计算训练数据集预测与实际测量的误差
 % -----------------------------------------------------------------------------
 fprintf('step 2 计算训练数据集残差\n');
-% ann_model = 'trained_neural_networks.mat' ;
-ann_model = 'new_train_ann.mat';
+ann_model = 'trained_neural_networks.mat' ;
+% ann_model = 'new_train_ann.mat';
 [ train_data ] = ann_predict_error( Xdata_events_train, Ydata_events_train,ann_model );  % 训练数据误差
 
 % step 3: 划分训练集和测试集
