@@ -16,7 +16,7 @@ function [ net ] = train_ann( train_data_x, train_data_y )
     net.trainparam.mu_inc = 10;
     net.trainparam.mu_max = 10000000000;
     net.performparam.regularization = 0;
-    net.performparam.normalization = 'none';
+    net.
     net.performFcn = 'mse';
     net.initFcn = 'initlay';
     net.divideMode = 'sample';
