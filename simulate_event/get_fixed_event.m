@@ -6,7 +6,7 @@ function [ simulate_data ] = get_fixed_event( len, step, count, sig )
 %   sig:    高斯分布方差
     simulate_data = zeros(len,1);
     
-    for i = 1:step+count:len
+    for i = 110:step+count:len
         sign = randsrc(1,1,[-1,1]);
         simulate_data(i:i + count - 1) = sign * get_gaussian_distribution(sig, count); 
     end

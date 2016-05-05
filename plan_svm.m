@@ -31,8 +31,8 @@ split_index = 1;
 % -----------------------------------------------------------------------------
 fprintf('step 4 GA 优化C和sigma\n');
 % [ C, sigma, TPR, FPR ] = ga_optimization(  train_data, train_label,validate_data,validate_label );
-C = 0.12;
-sigma = 0.27;
+C = 0.5;
+sigma = 0.18;
 % step 5: 用训练数据训练SVM模型
 % -----------------------------------------------------------------------------
 fprintf('step 5 训练SVM模型\n');

@@ -5,8 +5,8 @@ function [ C, sigma,TPR, FPR ] = ga_optimization(  train_data, train_label,valid
     %-------------------------------------------------------------------------
     options.Display='iter';                           %Display GA iterations 
     options.PlotFcns={@gaplotbestf @gaplotbestindiv}; %Display GA iterations graph
-    options.PopulationSize=24;                        %Population size
-    options.Generations=1;                           %Set number of generations
+    options.PopulationSize=4;                        %Population size
+    options.Generations=3;                           %Set number of generations
     options.TolFun=1e-6;                              %Set ending critiria
     options.CrossoverFcn=@crossoverheuristic;         %Set crossover type  染色体交叉运算
     options.FitnessScalingFcn=@fitscalingprop;        %Set scaling type  适应度函数（系统自带）
