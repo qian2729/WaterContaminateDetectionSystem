@@ -5,8 +5,8 @@ function [ C, sigma,TPR, FPR ] = ga_optimization(  train_data, train_label,valid
     %-------------------------------------------------------------------------
     options.Display='iter';                           %Display GA iterations 
     options.PlotFcns={@gaplotbestf @gaplotbestindiv}; %Display GA iterations graph
-    options.PopulationSize=12;                        %Population size
-    options.Generations=2;                           %Set number of generations
+    options.PopulationSize=24;                        %Population size
+    options.Generations=4;                           %Set number of generations
     options.TolFun=1e-6;                              %Set ending critiria
     options.CrossoverFcn=@crossoverheuristic;         %Set crossover type  染色体交叉运算
     options.FitnessScalingFcn=@fitscalingprop;        %Set scaling type  适应度函数（系统自带）
@@ -14,16 +14,16 @@ function [ C, sigma,TPR, FPR ] = ga_optimization(  train_data, train_label,valid
     options.SelectionFcn=@selectionroulette;          %Set selection type 选择优势种群
     options.UseParallel='always';                     %Set parallel computation mode  并行运算（可以多个CPU运行）
     
-    % Block 5: 设置优化参数的上下届
+    %  设置优化参数的上下届
     %-------------------------------------------------------------------------
-    lb=[0.1 0.1]; %下届
+    lb=[0.01 0.01]; %下届
     %  [C    sigma]
     ub=[1    1]; %上届
     
-    % Block 7: ％优化2个变量
+    % 优化2个变量
     %-------------------------------------------------------------------------
     % 定义目标函数
-    fun=@(x)offline(train_data, train_label,validate_data,validate_label,x(1),x(2));       
+    fun=@(x)fitness_fun(train_data, train_label,validate_data,validate_label,x(1),x(2));       
     xopt= ga(fun,2,[],[],[],[],lb,ub,[],options);          %解决优化问题
     [~, TPR,FPR,C,sigma]=fun(xopt);                           %评估优化结果
 end
