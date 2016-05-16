@@ -65,4 +65,5 @@ alpha = 0.5;
 % -----------------------------------------------------------------------------
 fprintf('step 8 性能评定\n');
 evaluation(test_label,test_prediction); %  画预测结果图
+save(sprintf('visualization/fig/decision_tree_predict_sigma%.1f.fig',sigma_for_data));
 
