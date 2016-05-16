@@ -16,7 +16,7 @@ function [ C, sigma,TPR, FPR ] = ga_optimization(  train_data, train_label,valid
     
     %  设置优化参数的上下届
     %-------------------------------------------------------------------------
-    lb=[0.1 0.1    0.1]; %下届
+    lb=[0.01 0.01    0.1]; %下届
     %  [C    sigma alpha]
     ub=[1    1     0.9]; %上届
     

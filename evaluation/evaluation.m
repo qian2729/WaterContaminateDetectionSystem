@@ -1,7 +1,7 @@
-function [  ] = evaluation( true_label, predict_label )
+function [h] = evaluation( true_label, predict_label )
 %   对预测结果进行可视化
 %   
-    figure
+    h = figure;
     subplot(211)
     bar(true_label);
     title('真实事件');

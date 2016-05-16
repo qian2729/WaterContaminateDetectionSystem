@@ -1,4 +1,4 @@
-function [ train_data, test_data ] = split_data_to_train_test(data)
+function [ train_data, test_data] = split_data_to_train_test(data)
 % Convert data to train data and test data( 2/3 for train, 1/3 for test).
 %
 % [train_data, test_data] = split_data_to_train_test(data)
@@ -13,5 +13,6 @@ function [ train_data, test_data ] = split_data_to_train_test(data)
     test_size = floor(size(data,1) / FOLDS);
     test_data = data(test_size + 1:test_size + test_size,:);
     train_data = data([1:test_size,test_size * 2 + 1:end],:);
+    
 end
 
