@@ -5,14 +5,14 @@ function [ C, sigma,TPR, FPR ] = ga_optimization(  train_data, train_label,valid
     %-------------------------------------------------------------------------
     options.Display='iter';                           %Display GA iterations 
     options.PlotFcns={@gaplotbestf @gaplotbestindiv}; %Display GA iterations graph
-    options.PopulationSize=24;                        %Population size
-    options.Generations=4;                           %Set number of generations
+    options.PopulationSize=3;                        %Population size
+    options.Generations=2;                           %Set number of generations
     options.TolFun=1e-6;                              %Set ending critiria
     options.CrossoverFcn=@crossoverheuristic;         %Set crossover type  染色体交叉运算
     options.FitnessScalingFcn=@fitscalingprop;        %Set scaling type  适应度函数（系统自带）
     options.MutationFcn= @mutationadaptfeasible;      %Set mutation type  变异
     options.SelectionFcn=@selectionroulette;          %Set selection type 选择优势种群
-    options.UseParallel='always';                     %Set parallel computation mode  并行运算（可以多个CPU运行）
+%     options.UseParallel='always';                     %Set parallel computation mode  并行运算（可以多个CPU运行）
     
     %  设置优化参数的上下届
     %-------------------------------------------------------------------------

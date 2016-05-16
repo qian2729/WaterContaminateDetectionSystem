@@ -10,9 +10,11 @@ addpath('util/');
 addpath('svm_model/');
 addpath('evaluation/');
 
+sigma_for_data = 0.2;
 % step 1: 加载训练和测试数据
 % -----------------------------------------------------------------------------
-event_path = 'new_data_with_event.csv';
+% event_path = 'new_data_with_event.csv';
+event_path = sprintf('data/new_data_with_event_%.1f.csv',sigma_for_data);
 fprintf('step 1 加载训练和测试数据\n');
 event_data = load(event_path);
 [train_data, test_data] = split_data_to_train_test(event_data);
@@ -23,8 +25,8 @@ clear train_data test_data;
 % step 2: 利用神经网络模型做预测，计算训练数据集预测与实际测量的误差
 % -----------------------------------------------------------------------------
 fprintf('step 2 计算训练数据集残差\n');
-ann_model = 'ann/ann_model_old.mat' ;
-% ann_model = 'ann/ann_model.mat';
+% ann_model = 'ann/ann_model_old.mat' ;
+ann_model = 'ann/new_train_ann.mat';
 [ whole_train_data ] = ann_predict_error( train_X, train_Y,ann_model );  % 训练数据误差
 
 % step 3: 将训练数据划分为训练集和验证集
@@ -59,10 +61,11 @@ threshold = 0.9;
 model = @svmclassify;
 alpha = 0.3;
 [test_prediction] = make_predict( model, factor, test_data, TPR, FPR, threshold,alpha);
-
+factor_file_name = sprintf('visualization/svm_factor_%.1f.mat',sigma_for_data);
+save(factor_file_name,'factor','TPR','FPR','test_data','test_label');
 % step 8: 对预测结果进行评估
 % -----------------------------------------------------------------------------
 fprintf('step 8 性能评定\n');
 evaluation(test_label,test_prediction); %  画预测结果图
-% draw_roc(model, factor, test_data,test_label,TPR, FPR); % 画ROC图
+% draw_roc(model, factor, test_data,test_label,TPR, FPR,alpha); % 画ROC图
 

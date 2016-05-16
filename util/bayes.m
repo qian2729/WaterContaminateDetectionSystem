@@ -1,4 +1,4 @@
-function [ event_prediction ] = bayes(predict_label,TPR,FPR, threshold, alpha)
+function [ event_prediction,P_event ] = bayes(predict_label,TPR,FPR, threshold, alpha)
 %   应用贝叶斯规则对每一时刻事件发生的概率进行估计
 %   并应用平滑方法来去除噪声事件 ,alpha
 
