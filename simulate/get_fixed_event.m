@@ -8,7 +8,7 @@ function [ simulate_data ] = get_fixed_event( len, step, count, sig,signs )
     index = 1;
     for i = 100:step+count:len
         sign = signs(index);
-        if(rand() > 0.85)
+        if(rand() > 0.75)
             sign = -sign;
         end
         simulate_data(i:i + count - 1) = sign * get_gaussian_distribution(sig, count); 

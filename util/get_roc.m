@@ -1,4 +1,4 @@
-function [] = draw_roc(model, factor, test_data,test_label,TPR, FPR,alpha)
+function [fpr,tpr] = get_roc(model, factor, test_data,test_label,TPR, FPR,alpha)
 %   »æÖÆROCÇúÏß
     thresholds = 0.001:0.01:1;
     tpr = zeros(length(thresholds));
@@ -11,8 +11,5 @@ function [] = draw_roc(model, factor, test_data,test_label,TPR, FPR,alpha)
         fpr(index) = fp;
         index = index + 1;
     end
-    figure
-    plot(fpr,tpr);
-    title('ROC');
 end
 
