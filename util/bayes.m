@@ -3,7 +3,6 @@ function [ event_prediction,P_event ] = bayes(predict_label,TPR,FPR, threshold, 
 %   并应用平滑方法来去除噪声事件 ,alpha
 
     pe0 = 1e-8;                     %设置初始事件的概率
-%     alpha = 0.5;    % 设置默认平滑细数 0.1<＝alpha<＝0.9 通过修改平滑系数可以调整去掉噪音异常的程度
                      
     pe = pe0;
     P_event = zeros(1,length(predict_label));

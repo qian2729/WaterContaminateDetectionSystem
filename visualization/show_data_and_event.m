@@ -19,7 +19,7 @@ for sensor_type = 3:8
     hold on;
     plot(xData,normal_data(start_pos:end_pos,sensor_type),'b');
     hold off;
-    filename = sprintf('data_and_event_sensor%d.fig',sensor_type);
+    filename = sprintf('fig/data_and_event_sensor%d.fig',sensor_type);
     savefig(filename);
     close(h);
 end

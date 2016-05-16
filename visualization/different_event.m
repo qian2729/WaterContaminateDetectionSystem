@@ -23,7 +23,7 @@ for sigma = sigmas
     t = sprintf('event %.1f',sigma);
     title(t);
 end
-filename = 'different_event.fig';
+filename = 'fig/different_event.fig';
 savefig(filename);
 close(h);
 

@@ -1,23 +1,31 @@
 sigmas = [0.2 0.5];
 addpath('../util');
+
+% prefix = 'svm';
+% model = @svmclassify;
+prefix = 'decision_tree';
+model = @predict;
+alpha = 0.5;
+threshold = 0.9;
+
 for sigma = sigmas
-    trained_svm = load(sprintf('svm_factor_%.1f.mat',sigma));
-    factor = trained_svm.factor;
-    test_data = trained_svm.test_data;
-    TPR = trained_svm.TPR;
-    FPR = trained_svm.FPR;
-    test_label = trained_svm.test_label;
-    alpha = 0.1;
-    threshold = 0.9;
-    predict_label = svmclassify(factor,test_data);
+    model_name = sprintf('%s_factor_%.1f.mat',prefix,sigma);
+    trained_model = load(model_name);
+    factor = trained_model.factor;
+    test_data = trained_model.test_data;
+    TPR = trained_model.TPR;
+    FPR = trained_model.FPR;
+    test_label = trained_model.test_label;
+    predict_label = model(factor,test_data);
     [event_prediction,P_event] = bayes(predict_label, TPR,FPR,threshold,alpha);
+    
     h = figure;
     b = bar(test_label,'FaceColor',[0.9 0.9 0.9]);
     hold on;
     plot(P_event);
     hold off;
-    prefix = sprintf('概率和真实事件叠加图sigma-%.1f-alpha%.2f',sigma,alpha);
-    title(prefix);
-    savefig(sprintf('prob_and_true_label_sigma%.1f_alpha_%.2f.fig',sigma,alpha));
+    title_str = sprintf('%s prob and true label sigma-%.1f-alpha%.2f',prefix, sigma,alpha);
+    title(title_str);
+    savefig(sprintf('fig/%s_prob_and_true_label_sigma%.1f_alpha_%.2f.fig',prefix, sigma,alpha));
 %     close h;
 end
