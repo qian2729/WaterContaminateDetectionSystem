@@ -12,7 +12,8 @@ function [Z, TPR,FPR,C,sigma]=fitness_fun...
         [ TPR, FPR ] = get_TPR_FPR( validate_label, validate_prediction );
         conf = confusionmat(validate_label,validate_prediction);
         accuracy = (conf(1,1) + conf(2,2)) / sum(sum(conf));
-        Z = -(accuracy + TPR) + FPR; %优化目标
+%         Z = -(accuracy + TPR) + FPR; %优化目标
+        Z = -accuracy;
         fprintf('C:%.2f sigma:%.2f alpha:%.2f accuracy:%.2f,TPR:%.2f, FPR:%.2f Z:%.3f\n',... 
                                 C,sigma, alpha, accuracy, TPR, FPR,Z);
     catch

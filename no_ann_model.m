@@ -34,7 +34,8 @@ for sigma_for_data = sigmas
     % -----------------------------------------------------------------------------
     fprintf('step 4 GA 优化C和sigma\n');
     addpath('svm_model/');
-    [ C, sigma, TPR, FPR ] = ga_optimization(  train_data, train_label,validate_data,validate_label );
+    alpha = 0.8;
+    [ C, sigma, TPR, FPR ] = ga_optimization(  train_data, train_label,validate_data,validate_label,alpha );
 
     % step 5: 用训练数据训练SVM模型
     % -----------------------------------------------------------------------------

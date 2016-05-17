@@ -11,10 +11,11 @@ addpath('svm_model/');
 addpath('evaluation/');
 
 sigmas = [0.2 0.5];
+% sigmas = 0.2;
 for sigma_for_data = sigmas
     % step 1: 加载训练和测试数据
     % -----------------------------------------------------------------------------
-    % event_path = 'new_data_with_event.csv';
+%     event_path = 'new_data_with_event.csv';
     event_path = sprintf('data/new_data_with_event_%.1f.csv',sigma_for_data);
     fprintf('step 1 加载训练和测试数据\n');
     event_data = load(event_path);
@@ -26,7 +27,7 @@ for sigma_for_data = sigmas
     % step 2: 利用神经网络模型做预测，计算训练数据集预测与实际测量的误差
     % -----------------------------------------------------------------------------
     fprintf('step 2 计算训练数据集残差\n');
-    % ann_model = 'ann/ann_model_old.mat' ;
+%     ann_model = 'ann/ann_model_old.mat' ;
     ann_model = 'ann/new_train_ann.mat';
     [ whole_train_data ] = ann_predict_error( train_X, train_Y,ann_model );  % 训练数据误差
 
@@ -42,8 +43,15 @@ for sigma_for_data = sigmas
     % -----------------------------------------------------------------------------
     fprintf('step 4 GA 优化C和sigma\n');
     addpath('svm_model/');
-    [ C, sigma, TPR, FPR ] = ga_optimization(  train_data, train_label,validate_data,validate_label );
-
+    %%%%%%%%%%%%%%%
+    % 利用选择好的C和sigma，TPR和FPR根据经验进行设置
+    %%%%%%%%%%%%%%%%
+%     alpha = 0.8;
+%     [ C, sigma, TPR, FPR ] = ga_optimization(  train_data, train_label,validate_data,validate_label,alpha );
+     C=0.85;
+     sigma=0.60;
+     TPR = 0.9;
+     FPR = 0.01;
     % step 5: 用训练数据训练SVM模型
     % -----------------------------------------------------------------------------
     fprintf('step 5 训练SVM模型\n');
